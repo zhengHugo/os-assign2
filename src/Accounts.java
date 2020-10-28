@@ -20,8 +20,6 @@ public class Accounts {
   /**
    * Constructor method of Accounts class
    *
-   * @return
-   * @param
    */
   Accounts() {
     accountNumber = " ";
@@ -35,7 +33,6 @@ public class Accounts {
    * Accessor method of Accounts class
    *
    * @return accountNumber
-   * @param
    */
   public String getAccountNumber() {
     return accountNumber;
@@ -44,7 +41,6 @@ public class Accounts {
   /**
    * Mutator method of Accounts class
    *
-   * @return
    * @param accNumber
    */
   public void setAccountNumber(String accNumber) {
@@ -55,7 +51,6 @@ public class Accounts {
    * Accessor method of Accounts class
    *
    * @return accountType
-   * @param
    */
   public String getAccountType() {
     return accountType;
@@ -64,7 +59,6 @@ public class Accounts {
   /**
    * Mutator method of Accounts class
    *
-   * @return
    * @param accType
    */
   public void setAccountType(String accType) {
@@ -75,7 +69,6 @@ public class Accounts {
    * Accessor method of Accounts class
    *
    * @return firstName
-   * @param
    */
   public String getFirstName() {
     return firstName;
@@ -84,7 +77,6 @@ public class Accounts {
   /**
    * Mutator method of Accounts class
    *
-   * @return
    * @param fName
    */
   public void setFirstName(String fName) {
@@ -95,7 +87,6 @@ public class Accounts {
    * Accessor method of Accounts class
    *
    * @return lastName
-   * @param
    */
   public String getLastName() {
     return lastName;
@@ -104,7 +95,6 @@ public class Accounts {
   /**
    * Mutator method of Accounts class
    *
-   * @return
    * @param lName
    */
   public void setLastName(String lName) {
@@ -115,7 +105,6 @@ public class Accounts {
    * Accessor method of Accounts class
    *
    * @return balance
-   * @param
    */
   public double getBalance() {
     return balance;
@@ -124,7 +113,6 @@ public class Accounts {
   /**
    * Mutator method of Accounts class
    *
-   * @return
    * @param bal
    */
   public void setBalance(double bal) {

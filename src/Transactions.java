@@ -15,16 +15,13 @@ public class Transactions {
   private String operationType; /* Operation type : deposit, withdrawal, query */
   private double transactionAmount; /* Amount to deposit or withdraw */
   private double transactionBalance; /* Account balance after transaction */
-  private String
-      transactionError; /* Transaction error : NSF, invalid amount, invalind account, none */
-  private String
-      transactionStatus; /* Current transaction status : pending, sent, received, transferred, done */
+  /* Transaction error : NSF, invalid amount, invalid account, none */
+  private String transactionError;
+  /* Current transaction status : pending, sent, received, transferred, done */
+  private String transactionStatus;
 
   /**
    * Constructor method of Transactions class
-   *
-   * @return
-   * @param
    */
   Transactions() {
     accountNumber = " ";
@@ -39,7 +36,6 @@ public class Transactions {
    * Accessor method of Transactions class
    *
    * @return accountNumber
-   * @param
    */
   public String getAccountNumber() {
     return accountNumber;
@@ -48,7 +44,6 @@ public class Transactions {
   /**
    * Mutator method of Transactions class
    *
-   * @return
    * @param accNumber
    */
   public void setAccountNumber(String accNumber) {
@@ -59,7 +54,6 @@ public class Transactions {
    * Accessor method of Transactions class
    *
    * @return operationType
-   * @param
    */
   public String getOperationType() {
     return operationType;
@@ -68,7 +62,6 @@ public class Transactions {
   /**
    * Mutator method of Transactions class
    *
-   * @return
    * @param opType
    */
   public void setOperationType(String opType) {
@@ -79,7 +72,6 @@ public class Transactions {
    * Accessor method of Transactions class
    *
    * @return transactionAmount
-   * @param
    */
   public double getTransactionAmount() {
     return transactionAmount;
@@ -88,8 +80,7 @@ public class Transactions {
   /**
    * Mutator method of Transactions class
    *
-   * @return
-   * @param transmount
+   * @param transAmount
    */
   public void setTransactionAmount(double transAmount) {
     transactionAmount = transAmount;
@@ -99,7 +90,6 @@ public class Transactions {
    * Accessor method of Transactions class
    *
    * @return transactionBalance
-   * @param
    */
   public double getTransactionBalance() {
     return transactionBalance;
@@ -108,7 +98,6 @@ public class Transactions {
   /**
    * Mutator method of Transactions class
    *
-   * @return
    * @param transBalance
    */
   public void setTransactionBalance(double transBalance) {
@@ -119,7 +108,6 @@ public class Transactions {
    * Accessor method of Transactions class
    *
    * @return transactionError
-   * @param
    */
   public String getTransactionError() {
     return transactionError;
@@ -128,7 +116,6 @@ public class Transactions {
   /**
    * Mutator method of Transactions class
    *
-   * @return
    * @param transError
    */
   public void setTransactionError(String transError) {
@@ -139,7 +126,6 @@ public class Transactions {
    * Accessor method of Transactions class
    *
    * @return transactionStatus
-   * @param
    */
   public String getTransactionStatus() {
     return transactionStatus;
@@ -148,7 +134,6 @@ public class Transactions {
   /**
    * Mutator method of Transactions class
    *
-   * @return
    * @param transStatus
    */
   public void setTransactionStatus(String transStatus) {
