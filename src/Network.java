@@ -31,8 +31,11 @@ public class Network extends Thread {
   private static String inBufferStatus, outBufferStatus;
   private static String networkStatus; /* Network status - active, inactive */
 
-  // semaphore to synchronize the input and output buffer
-  private static Semaphore semaphore;
+  public static Semaphore inBufferFull= new Semaphore(0);
+  public static Semaphore inBufferEmpty= new Semaphore(10);
+  public static Semaphore outBufferFull= new Semaphore(0);
+  public static Semaphore outBufferEmpty=new Semaphore(10);
+
   /** Constructor of the Network class */
   Network() {
     int i;
@@ -307,6 +310,11 @@ public class Network extends Thread {
    * @param inPacket transaction transferred from the client
    */
   public static boolean send(Transactions inPacket) {
+    try {
+      inBufferEmpty.acquire();
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
 
     inComingPacket[inputIndexClient].setAccountNumber(inPacket.getAccountNumber());
     inComingPacket[inputIndexClient].setOperationType(inPacket.getOperationType());
@@ -331,7 +339,7 @@ public class Network extends Thread {
     } else {
       setInBufferStatus("normal");
     }
-
+    inBufferFull.release();
     return true;
   }
 
@@ -341,7 +349,11 @@ public class Network extends Thread {
    * @param outPacket updated transaction received by the client
    */
   public static boolean receive(Transactions outPacket) {
-
+    try {
+      outBufferFull.acquire();
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
     outPacket.setAccountNumber(outGoingPacket[outputIndexClient].getAccountNumber());
     outPacket.setOperationType(outGoingPacket[outputIndexClient].getOperationType());
     outPacket.setTransactionAmount(outGoingPacket[outputIndexClient].getTransactionAmount());
@@ -365,7 +377,7 @@ public class Network extends Thread {
     } else {
       setOutBufferStatus("normal");
     }
-
+    outBufferEmpty.release();
     return true;
   }
 
@@ -376,7 +388,11 @@ public class Network extends Thread {
    * @param outPacket updated transaction transferred by the server to the network output buffer
    */
   public static boolean transferOut(Transactions outPacket) {
-
+    try {
+      outBufferEmpty.acquire();
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
     outGoingPacket[inputIndexServer].setAccountNumber(outPacket.getAccountNumber());
     outGoingPacket[inputIndexServer].setOperationType(outPacket.getOperationType());
     outGoingPacket[inputIndexServer].setTransactionAmount(outPacket.getTransactionAmount());
@@ -402,7 +418,7 @@ public class Network extends Thread {
     } else {
       setOutBufferStatus("normal");
     }
-
+    outBufferFull.release();
     return true;
   }
 
@@ -412,7 +428,11 @@ public class Network extends Thread {
    * @param inPacket transaction transferred from the input buffer to the server
    */
   public static boolean transferIn(Transactions inPacket) {
-
+    try{
+      inBufferFull.acquire();
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
     inPacket.setAccountNumber(inComingPacket[outputIndexServer].getAccountNumber());
     inPacket.setOperationType(inComingPacket[outputIndexServer].getOperationType());
     inPacket.setTransactionAmount(inComingPacket[outputIndexServer].getTransactionAmount());
@@ -436,7 +456,7 @@ public class Network extends Thread {
     } else {
       setInBufferStatus("normal");
     }
-
+    inBufferEmpty.release();
     return true;
   }
 
