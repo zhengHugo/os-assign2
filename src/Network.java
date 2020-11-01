@@ -31,6 +31,8 @@ public class Network extends Thread {
   private static String inBufferStatus, outBufferStatus;
   private static String networkStatus; /* Network status - active, inactive */
 
+  // semaphore to synchronize the input and output buffer
+  private static Semaphore semaphore;
   /** Constructor of the Network class */
   Network() {
     int i;
