@@ -31,10 +31,10 @@ public class Network extends Thread {
   private static String inBufferStatus, outBufferStatus;
   private static String networkStatus; /* Network status - active, inactive */
 
-  public static Semaphore inBufferFull= new Semaphore(0);
-  public static Semaphore inBufferEmpty= new Semaphore(10);
-  public static Semaphore outBufferFull= new Semaphore(0);
-  public static Semaphore outBufferEmpty=new Semaphore(10);
+  private static Semaphore inBufferFull;
+  private static Semaphore inBufferEmpty;
+  private static Semaphore outBufferFull;
+  private static Semaphore outBufferEmpty;
 
   /** Constructor of the Network class */
   Network() {
@@ -61,6 +61,11 @@ public class Network extends Thread {
     outputIndexClient = 0;
 
     networkStatus = "active";
+
+    inBufferFull = new Semaphore(0);
+    inBufferEmpty = new Semaphore(maxNbPackets);
+    outBufferFull = new Semaphore(0);
+    outBufferEmpty = new Semaphore(maxNbPackets);
   }
 
   /**
